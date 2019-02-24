@@ -1,4 +1,5 @@
 var base_url = "https://api.football-data.org/v2/";
+var XAuthToken = "df64738b897948ecb27455e0fe2c7c35";
 
 // Blok kode yang akan dipanggil juka fetch berhasil
 function status(response) {
@@ -46,7 +47,7 @@ function getStandings() {
                             <td>${team.goalsAgainst}</td>
                             <td>${team.goalDifference}</td>
                             <td>${team.points}</td>
-                            <td><img style="width: auto; height: 50px" class="responsive-img" src="${team.team.crestUrl}" /></td>
+                            <td><img style="width: auto; height: 50px" class="responsive-img" src="${team.team.crestUrl.replace(/^http:\/\//i, 'https://')}" /></td>
                         </tr>
                         `;
                     });
@@ -60,7 +61,7 @@ function getStandings() {
 
     fetch(base_url + "competitions/2014/standings", {
             headers: {
-                "X-Auth-Token": "df64738b897948ecb27455e0fe2c7c35"
+                "X-Auth-Token": XAuthToken
             }
         }).then(status).then(json).then(function (data) {
             // Objek/array JavaScript dari response.json() masuk lewat data
@@ -79,7 +80,7 @@ function getStandings() {
                 <td>${team.goalsAgainst}</td>
                 <td>${team.goalDifference}</td>
                 <td>${team.points}</td>
-                <td><img style="width: auto; height: 50px" class="responsive-img" src="${team.team.crestUrl}" /></td>
+                <td><img style="width: auto; height: 50px" class="responsive-img" src="${team.team.crestUrl.replace(/^http:\/\//i, 'https://')}" /></td>
             </tr>
             `;
             });
@@ -108,7 +109,7 @@ function getTeamByID() {
                         <div class="card" style="padding: 15px">
                             <div class="row">
                                 <div class="col s12 m4 center">
-                                    <img src="${data.crestUrl}" width="80%" class="responseive-img" />
+                                    <img src="${data.crestUrl.replace(/^http:\/\//i, 'https://')}" width="80%" class="responseive-img" />
                                     </div>
                                     <div class="col s12 m8">
                                     <p><small>Name:</small><br/>${data.name} (${data.shortName})</p>
@@ -163,7 +164,7 @@ function getTeamByID() {
 
     fetch(base_url + "teams/" + idParam, {
         headers: {
-            "X-Auth-Token": "df64738b897948ecb27455e0fe2c7c35"
+            "X-Auth-Token": XAuthToken
         }
     }).then(status).then(json).then(function (data) {
         var teamDetailHtml = `
@@ -175,7 +176,7 @@ function getTeamByID() {
             <div class="card" style="padding: 15px">
                 <div class="row">
                     <div class="col s12 m4 center">
-                        <img src="${data.crestUrl}" width="80%" class="responseive-img" />
+                        <img src="${data.crestUrl.replace(/^http:\/\//i, 'https://')}" width="80%" class="responseive-img" />
                         </div>
                         <div class="col s12 m8">
                         <p><small>Name:</small><br/>${data.name} (${data.shortName})</p>
@@ -259,7 +260,7 @@ function getMatchForCompetition() {
 
     fetch(base_url + "competitions/2014/matches", {
         headers: {
-            "X-Auth-Token": "df64738b897948ecb27455e0fe2c7c35"
+            "X-Auth-Token": XAuthToken
         }
     }).then(status).then(json).then(function (data) {
         var scoreHtml = "";
@@ -314,7 +315,7 @@ function getFavoriteClubs() {
             <tr>
                 <td><a href="./pages/detail.html?id=${team.id_club}" style="color: black">${team.name}</a></td>
                 <td><a href="${team.url_website}" style="color: black">${team.url_website}</a></td>
-                <td><img style="width: auto; height: 50px" class="responsive-img" src="${team.url_logo}" /></td>
+                <td><img style="width: auto; height: 50px" class="responsive-img" src="${team.url_logo.replace(/^http:\/\//i, 'https://')}" /></td>
             </tr>
             `;
         })

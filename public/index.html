@@ -11,8 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/materialize.min.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="manifest" href="/manifest.json">
-    <link rel="shortcut icon" type="image/png" href="/img/icon/icon.png" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" type="image/png" href="/img/icon.png" />
     <meta name="theme-color" content="#039be5">
 </head>
 
@@ -90,14 +90,12 @@
             })
         }
 
-
-
         function showNotif() {
             const title = "Notifikasi sederhana";
             const options = {
                 "body": "Ini adalah konten notif. \nBisa menggunakan baris baru.",
-                "icon": "/img/icon/icon.png",
-                "badge": "/img/icon/icon.png"
+                "icon": "/img/icon.png",
+                "badge": "/img/icon.png"
             }
 
             if (Notification.permission === "granted") {
